@@ -1,2 +1,2 @@
 # discord-token-cracker
-crack discord tokens (WIP)
+Crack a specific users token from their user ID. (WIP)
