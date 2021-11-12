@@ -1,5 +1,5 @@
 # 🚦 Discord Token Cracker
-Easily crack a users token just by there user ID
+Easily crack a users token just by their user ID
 
 # Features
 - Proper Token Syntax
