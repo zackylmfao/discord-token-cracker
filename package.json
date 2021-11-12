@@ -4,6 +4,7 @@
   "description": "Crack a specific user's token",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,9 @@
     "discord-exploits",
     "discord-token-cracker"
   ],
+  "engines": {
+    "node": "16.x"
+  },
   "author": "MrDiamond64",
   "license": "ISC",
   "bugs": {
@@ -26,7 +30,7 @@
   "homepage": "https://github.com/MrDiamond64/discord-token-cracker#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "nodejs-base64": "^2.0.0",
-    "request": "^2.88.2"
+    "discord.js-self": "^12.0.4",
+    "nodejs-base64": "^2.0.0"
   }
 }
