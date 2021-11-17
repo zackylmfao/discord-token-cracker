@@ -23,14 +23,14 @@
     "node": "16.x"
   },
   "author": "MrDiamond64",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MrDiamond64/discord-token-cracker/issues"
   },
   "homepage": "https://github.com/MrDiamond64/discord-token-cracker#readme",
   "dependencies": {
     "chalk": "^4.1.2",
-    "discord.js-self": "^12.0.4",
+    "discord.js": "^11.5.1",
     "nodejs-base64": "^2.0.0"
   }
 }

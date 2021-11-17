@@ -1,15 +1,15 @@
 const chalk = require("chalk");
-const Discord = require("discord.js-self");
+const Discord = require("discord.js");
 const fs = require("fs");
 const client = new Discord.Client();
 const { base64encode } = require("nodejs-base64");
 let { user_id, delay } = require("./config.json");
 
 // validate the user id
-if (isNaN(user_id)) return console.warn(`Error: "${user_id}" is not a valid number`);
+if (isNaN(user_id)) return console.warn(chalk.red(`Error: "${user_id}" is not a valid number`));
 if (user_id.toString().length != 18) return console.warn(chalk.red("Error: The provided user ID too short"));
-if (Math.ceil(user_id) != user_id) return console.warn("Error: The user id cannot contain a decimal");
-if (Math.abs(user_id) != user_id) return console.warn("Error: The user id cannot be a negative");
+if (Math.ceil(user_id) != user_id) return console.warn(chalk.red("Error: The user id cannot contain a decimal"));
+if (Math.abs(user_id) != user_id) return console.warn(chalk.red("Error: The user id cannot be a negative"));
 
 // user tokens usually start with the user id base64 encoded
 function getFirstPart() {
@@ -50,7 +50,7 @@ async function validateToken() {
     if (invalidtokens[token.toString()]) return console.log(chalk.gray(`Token "${token}" is in our invalid tokens database, skipping`))
 
 	client.login(token).catch(error => {
-		if (error.toString().startsWith("Error [TOKEN_INVALID]")) {
+		if (error.toString().startsWith("Error: Incorrect login details were provided.")) {
 			console.log(chalk.blueBright(`Invalid Token: ${token}`));
 
             // add the invalid token to our database
@@ -58,9 +58,7 @@ async function validateToken() {
                 isInvalid: true
             }
             return fs.writeFileSync('./invalidtokens.json', JSON.stringify(invalidtokens));
-		}
-
-        console.error(error)
+		} else console.warn(error);
 
 		client.on("ready", async () => {
 			console.log(chalk.greenBright(`Found Working Token! ${token}`))
