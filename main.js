@@ -39,31 +39,30 @@ function getLastPart() {
 }
 
 // now we check if the token we generated is valid
-async function validateToken() {
+function validateToken() {
 	let token = getFirstPart().concat(getMiddlePart(), getLastPart());
 
 	// make sure the token isnt in our database
-	const invalidtokens = await JSON.parse(
+	const invalidtokens = JSON.parse(
 		fs.readFileSync("./invalidtokens.json"),
 	);
 
-    if (invalidtokens[token.toString()]) return console.log(chalk.gray(`Token "${token}" is in our invalid tokens database, skipping`))
+	if (invalidtokens[token.toString()]) return console.log(chalk.gray(`Token "${token}" is in our invalid tokens database, skipping`))
 
 	client.login(token).catch(error => {
 		if (error.toString().startsWith("Error: Incorrect login details were provided.")) {
 			console.log(chalk.blueBright(`Invalid Token: ${token}`));
 
-            // add the invalid token to our database
+			// add the invalid token to our database
 			invalidtokens[token.toString()] = {
-                isInvalid: true
-            }
-            return fs.writeFileSync('./invalidtokens.json', JSON.stringify(invalidtokens));
+				isInvalid: true
+			}
+			fs.writeFileSync('./invalidtokens.json', JSON.stringify(invalidtokens));
 		} else console.warn(error);
-
-		client.on("ready", async () => {
-			console.log(chalk.greenBright(`Found Working Token! ${token}`))
-			delay = 2147483646
-		});
+	});
+	client.on("ready", async () => {
+		console.log(chalk.greenBright(`Found Working Token! ${token}`))
+		delay = 2147483646
 	});
 }
 

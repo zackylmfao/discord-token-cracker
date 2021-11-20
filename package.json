@@ -7,27 +7,9 @@
     "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MrDiamond64/discord-token-cracker.git"
-  },
-  "keywords": [
-    "discord",
-    "discord-token",
-    "discord-cracker",
-    "discord-exploit",
-    "discord-exploits",
-    "discord-token-cracker"
-  ],
   "engines": {
     "node": "16.x"
   },
-  "author": "MrDiamond64",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MrDiamond64/discord-token-cracker/issues"
-  },
-  "homepage": "https://github.com/MrDiamond64/discord-token-cracker#readme",
   "dependencies": {
     "chalk": "^4.1.2",
     "discord.js": "^11.5.1",
