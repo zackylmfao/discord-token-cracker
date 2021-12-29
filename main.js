@@ -20,18 +20,26 @@ function getFirstPart() {
 
 // get the middle part of the token
 function getMiddlePart() {
-	let char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-_";
-	let result = "";
-	for (let i = 0; i < 6; i++) {
-		result += char.charAt(Math.floor(Math.random() * char.length));
+	// first part is usually an uppercase character
+	let char1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	let firstChar = ""
+	for (let i = 0; i < 1; i++) {
+		firstChar += char1.charAt(Math.floor(Math.random() * char1.length));
 	}
-	return (result = result += ".");
+	
+	// last few characters
+	let char2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-_";
+	let result = `${firstChar}`;
+	for (let i = 0; i < 5; i++) {
+		result += char2.charAt(Math.floor(Math.random() * char2.length));
+	}
+	return result = result += ".";
 }
 
 // and the hard part, the 3rd part
 // we need to generate a 27 long string
 function getLastPart() {
-	let char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
+	let char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-_";
 	let result = "";
 	for (let i = 0; i < 27; i++) {
 		result += char.charAt(Math.floor(Math.random() * char.length));
@@ -64,6 +72,7 @@ function validateToken() {
 			}
 			fs.writeFileSync('./invalidtokens.json', JSON.stringify(invalidtokens));
 		} else console.warn(currentDate + " | " + error);
+		client.destroy();
 	});
 }
 
